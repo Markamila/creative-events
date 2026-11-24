@@ -33,7 +33,9 @@
     while(contrast(accent,bg)<4.5) accent=mix(accent,dark?'#ffffff':'#000000',.12);
     const fg=contrast(accent,'#ffffff')>=4.5?'#ffffff':'#101010';
     root.dataset.theme=id;
-    const vars={'--rose-50':bg,'--rose-100':mix(bg,accent,.10),'--rose-200':mix(bg,accent,.19),'--rose-300':mix(bg,accent,.35),'--rose-400':mix(bg,accent,.58),'--rose-500':accent,'--rose-600':accent,'--rose-700':mix(accent,ink,.22),'--ink':ink,'--muted':mix(ink,bg,.24),'--line':mix(bg,ink,.17),'--white':surface,'--theme-surface':surface,'--theme-button':fg,'--theme-scheme':dark?'dark':'light','--theme-error':dark?'#ff9aaa':'#a92a42','--radius':r+'px','--radius-sm':Math.max(2,Math.round(r*.6))+'px','--theme-button-radius':r>=18?'999px':r+'px','--shadow':`0 8px 26px ${accent}25`,'--shadow-lg':`0 16px 42px ${accent}35`,'--font-serif':font==='sans'?'Manrope, system-ui, sans-serif':font==='retro'?'Georgia, serif':'"Cormorant Garamond", Georgia, serif','--font-sans':font==='retro'?'Georgia, serif':'Manrope, system-ui, sans-serif'};
+    root.style.removeProperty('--font-serif');
+    root.style.removeProperty('--font-sans');
+    const vars={'--rose-50':bg,'--rose-100':mix(bg,accent,.10),'--rose-200':mix(bg,accent,.19),'--rose-300':mix(bg,accent,.35),'--rose-400':mix(bg,accent,.58),'--rose-500':accent,'--rose-600':accent,'--rose-700':mix(accent,ink,.22),'--ink':ink,'--muted':mix(ink,bg,.24),'--line':mix(bg,ink,.17),'--white':surface,'--theme-surface':surface,'--theme-button':fg,'--theme-scheme':dark?'dark':'light','--theme-error':dark?'#ff9aaa':'#a92a42','--radius':r+'px','--radius-sm':Math.max(2,Math.round(r*.6))+'px','--theme-button-radius':r>=18?'999px':r+'px','--shadow':`0 8px 26px ${accent}25`,'--shadow-lg':`0 16px 42px ${accent}35`};
     for(const [k,v] of Object.entries(vars)) { if(id==='rose')root.style.removeProperty(k);else root.style.setProperty(k,v); }
     document.querySelectorAll('[data-theme-choice]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.themeChoice===choice)));
   }
