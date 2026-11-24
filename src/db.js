@@ -76,6 +76,13 @@ export async function migrate() {
       sort     INTEGER NOT NULL DEFAULT 0
     );
 
+    ALTER TABLE services ADD COLUMN IF NOT EXISTS category_fr TEXT NOT NULL DEFAULT '';
+    ALTER TABLE services ADD COLUMN IF NOT EXISTS title_fr TEXT NOT NULL DEFAULT '';
+    ALTER TABLE services ADD COLUMN IF NOT EXISTS short_fr TEXT NOT NULL DEFAULT '';
+    ALTER TABLE services ADD COLUMN IF NOT EXISTS description_fr TEXT NOT NULL DEFAULT '';
+    ALTER TABLE faq ADD COLUMN IF NOT EXISTS question_fr TEXT NOT NULL DEFAULT '';
+    ALTER TABLE faq ADD COLUMN IF NOT EXISTS answer_fr TEXT NOT NULL DEFAULT '';
+
     CREATE TABLE IF NOT EXISTS requests (
       id             SERIAL PRIMARY KEY,
       created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),

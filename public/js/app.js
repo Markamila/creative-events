@@ -33,6 +33,8 @@
   const EVENT_TYPES = ['День рождения', 'Девичник', 'Корпоратив', 'Детский праздник', 'Семейное мероприятие', 'Дружеская встреча', 'Другое'];
 
   let data = null;
+  const localized = (obj,key) => localStorage.getItem('ce-lang') === 'fr' && obj[key+'_fr']?.trim() ? obj[key+'_fr'] : obj[key];
+  const categoryLabel = c => localized(data.services.find(s => s.category === c && s.category_fr?.trim()) || {category:c}, 'category');
 
   // ───────── загрузка и отрисовка ─────────
   async function load() {
@@ -67,7 +69,7 @@
   function renderServices() {
     const cats = [...new Set(data.services.map((s) => s.category))];
     const f = $('#serviceFilters'); f.replaceChildren();
-    [['all', 'Все'], ...cats.map((c) => [c, c])].forEach(([key, label]) => {
+    [['all', 'Все'], ...cats.map((c) => [c, categoryLabel(c)])].forEach(([key, label]) => {
       f.append(el('button', {
         type: 'button', class: 'chip', role: 'tab', 'aria-selected': String(activeCat === key), text: label,
         onclick: () => { activeCat = key; renderServices(); },
@@ -75,13 +77,13 @@
     });
     const grid = $('#serviceGrid'); grid.replaceChildren();
     data.services.filter((s) => activeCat === 'all' || s.category === activeCat).forEach((s) => {
-      const img = el('img', { src: safeImg(s.image), alt: s.title, loading: 'lazy', decoding: 'async', width: 800, height: 600 });
+      const img = el('img', { src: safeImg(s.image), alt: localized(s,'title'), loading: 'lazy', decoding: 'async', width: 800, height: 600 });
       grid.append(el('button', { type: 'button', class: 'card svc reveal is-visible', onclick: () => openService(s.id) },
         el('div', { class: 'svc__img' }, img),
         el('div', { class: 'svc__body' },
-          el('span', { class: 'svc__cat', text: s.category }),
-          el('h3', { text: s.title }),
-          el('p', { text: s.short }),
+          el('span', { class: 'svc__cat', text: categoryLabel(s.category) }),
+          el('h3', { text: localized(s,'title') }),
+          el('p', { text: localized(s,'short') }),
           el('span', { class: 'svc__more', text: 'Подробнее' }))));
     });
   }
@@ -91,10 +93,10 @@
     const body = $('#serviceBody'); body.replaceChildren();
     const examples = (s.examples || []).map(safeImg).filter(Boolean);
     body.append(el('div', { class: 'svc-detail' },
-      el('div', { class: 'svc-detail__hero' }, el('img', { src: safeImg(s.image), alt: s.title })),
-      el('p', { class: 'eyebrow', text: s.category }),
-      el('h2', { id: 'svcTitle', text: s.title }),
-      el('div', { class: 'prose' }, String(s.description || s.short).split(/\n{2,}/).map((p) => el('p', { text: p }))),
+      el('div', { class: 'svc-detail__hero' }, el('img', { src: safeImg(s.image), alt: localized(s,'title') })),
+      el('p', { class: 'eyebrow', text: categoryLabel(s.category) }),
+      el('h2', { id: 'svcTitle', text: localized(s,'title') }),
+      el('div', { class: 'prose' }, String(localized(s,'description') || localized(s,'short')).split(/\n{2,}/).map((p) => el('p', { text: p }))),
       examples.length ? el('h3', { text: 'Примеры готовых работ' }) : null,
       examples.length ? el('div', { class: 'examples' }, examples.map((u, i) =>
         el('button', { type: 'button', 'aria-label': `Открыть пример ${i + 1}`, onclick: () => openLightbox(examples.map((x) => ({ image: x, caption: s.title })), i) },
@@ -176,8 +178,8 @@
     const box = $('#faqList'); box.replaceChildren();
     data.faq.forEach((f) => {
       box.append(el('details', { class: 'reveal is-visible' },
-        el('summary', { text: f.question }),
-        el('div', { class: 'faq__a' }, String(f.answer).split(/\n{2,}/).map((p) => el('p', { text: p })))));
+        el('summary', { text: localized(f,'question') }),
+        el('div', { class: 'faq__a' }, String(localized(f,'answer')).split(/\n{2,}/).map((p) => el('p', { text: p })))));
     });
   }
 
@@ -234,9 +236,9 @@
     const sc = $('#serviceChoices'); sc.replaceChildren();
     const cats = [...new Set(data.services.map((s) => s.category))];
     cats.forEach((c) => {
-      sc.append(el('div', { class: 'svc-group' }, el('h4', { text: c }),
+      sc.append(el('div', { class: 'svc-group' }, el('h4', { text: categoryLabel(c) }),
         el('div', { class: 'choice-row' }, data.services.filter((s) => s.category === c).map((s) =>
-          el('label', { class: 'choice' }, el('input', { type: 'checkbox', name: 'service', value: s.title, ...(state.services.has(s.title) ? { checked: '' } : {}) }), el('span', { text: s.title }))))));
+          el('label', { class: 'choice' }, el('input', { type: 'checkbox', name: 'service', value: s.title, ...(state.services.has(s.title) ? { checked: '' } : {}) }), el('span', { text: localized(s,'title') }))))));
     });
 
     const pc = $('#packageChoices'); pc.replaceChildren();

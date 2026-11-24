@@ -172,6 +172,11 @@ adminRouter.put('/settings', wrap(async (req, res) => {
 // Услуги
 const serviceFields = (b) => ({
   category: str(b.category, 80),
+  category_fr: str(b.category_fr, 80),
+  title_fr: str(b.title_fr, 160),
+  short_fr: str(b.short_fr, 300),
+  description_fr: str(b.description_fr, 3000),
+
   title: str(b.title, 160),
   short: str(b.short, 300),
   description: str(b.description, 3000),
@@ -185,9 +190,9 @@ adminRouter.post('/services', wrap(async (req, res) => {
   const s = serviceFields(req.body || {});
   if (!s.title || !s.category) return res.status(422).json({ error: 'Укажите категорию и название' });
   const { rows } = await q(
-    `INSERT INTO services (category,title,short,description,image,examples,sort,active)
-     VALUES ($1,$2,$3,$4,$5,$6,COALESCE(NULLIF($7,0),(SELECT COALESCE(MAX(sort),0)+10 FROM services)),$8) RETURNING *`,
-    [s.category, s.title, s.short, s.description, s.image, JSON.stringify(s.examples), s.sort, s.active],
+    `INSERT INTO services (category,title,short,description,image,examples,sort,active,category_fr,title_fr,short_fr,description_fr)
+     VALUES ($1,$2,$3,$4,$5,$6,COALESCE(NULLIF($7,0),(SELECT COALESCE(MAX(sort),0)+10 FROM services)),$8,$9,$10,$11,$12) RETURNING *`,
+    [s.category, s.title, s.short, s.description, s.image, JSON.stringify(s.examples), s.sort, s.active, s.category_fr, s.title_fr, s.short_fr, s.description_fr],
   );
   res.json({ service: rows[0] });
 }));
@@ -196,8 +201,8 @@ adminRouter.put('/services/:id', wrap(async (req, res) => {
   const s = serviceFields(req.body || {});
   if (!s.title || !s.category) return res.status(422).json({ error: 'Укажите категорию и название' });
   const { rows } = await q(
-    `UPDATE services SET category=$1,title=$2,short=$3,description=$4,image=$5,examples=$6,sort=$7,active=$8 WHERE id=$9 RETURNING *`,
-    [s.category, s.title, s.short, s.description, s.image, JSON.stringify(s.examples), s.sort, s.active, int(req.params.id, -1)],
+    `UPDATE services SET category=$1,title=$2,short=$3,description=$4,image=$5,examples=$6,sort=$7,active=$8,category_fr=$10,title_fr=$11,short_fr=$12,description_fr=$13 WHERE id=$9 RETURNING *`,
+    [s.category, s.title, s.short, s.description, s.image, JSON.stringify(s.examples), s.sort, s.active, int(req.params.id, -1), s.category_fr, s.title_fr, s.short_fr, s.description_fr],
   );
   if (!rows.length) return res.sendStatus(404);
   res.json({ service: rows[0] });
@@ -230,8 +235,8 @@ adminRouter.post('/faq', wrap(async (req, res) => {
   const answer = str(req.body?.answer, 2000);
   if (!question || !answer) return res.status(422).json({ error: 'Заполните вопрос и ответ' });
   const { rows } = await q(
-    'INSERT INTO faq (question, answer, sort) VALUES ($1,$2,(SELECT COALESCE(MAX(sort),0)+10 FROM faq)) RETURNING *',
-    [question, answer],
+    'INSERT INTO faq (question, answer, sort, question_fr, answer_fr) VALUES ($1,$2,(SELECT COALESCE(MAX(sort),0)+10 FROM faq),$3,$4) RETURNING *',
+    [question, answer, str(req.body?.question_fr,300), str(req.body?.answer_fr,2000)],
   );
   res.json({ item: rows[0] });
 }));
@@ -240,8 +245,8 @@ adminRouter.put('/faq/:id', wrap(async (req, res) => {
   const question = str(req.body?.question, 300);
   const answer = str(req.body?.answer, 2000);
   if (!question || !answer) return res.status(422).json({ error: 'Заполните вопрос и ответ' });
-  const { rows } = await q('UPDATE faq SET question=$1, answer=$2, sort=$3 WHERE id=$4 RETURNING *',
-    [question, answer, int(req.body?.sort, 0), int(req.params.id, -1)]);
+  const { rows } = await q('UPDATE faq SET question=$1, answer=$2, sort=$3, question_fr=$5, answer_fr=$6 WHERE id=$4 RETURNING *',
+    [question, answer, int(req.body?.sort, 0), int(req.params.id, -1), str(req.body?.question_fr,300), str(req.body?.answer_fr,2000)]);
   if (!rows.length) return res.sendStatus(404);
   res.json({ item: rows[0] });
 }));
@@ -304,7 +309,7 @@ adminRouter.post('/gallery', uploadMw, wrap(async (req, res) => {
 
 adminRouter.put('/gallery/:id', wrap(async (req, res) => {
   const { rows } = await q('UPDATE gallery SET caption=$1, category=$2, sort=$3 WHERE id=$4 RETURNING *',
-    [str(req.body?.caption, 200), str(req.body?.category, 60), int(req.body?.sort, 0), int(req.params.id, -1)]);
+    [str(req.body?.caption, 200), str(req.body?.category, 60), int(req.body?.sort, 0), int(req.params.id, -1), str(req.body?.question_fr,300), str(req.body?.answer_fr,2000)]);
   if (!rows.length) return res.sendStatus(404);
   res.json({ item: rows[0] });
 }));

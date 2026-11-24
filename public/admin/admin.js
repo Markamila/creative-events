@@ -180,6 +180,7 @@
     const title = h('input', { value: cur.title, maxlength: 160 });
     const short = h('input', { value: cur.short, maxlength: 300 });
     const desc = h('textarea', { rows: 6, value: cur.description });
+    const frFields = [['category','Категория'],['title','Название'],['short','Краткое описание'],['description','Подробное описание']].map(([key,label]) => ({key: key+'_fr', label, input: h(key === 'description' ? 'textarea' : 'input', {value: cur[key+'_fr'] || '', rows: 4})}));
     const sort = h('input', { type: 'number', value: cur.sort });
     const active = h('input', { type: 'checkbox', ...(cur.active ? { checked: '' } : {}) });
     const cover = h('div', { class: 'imgs' }); const ex = h('div', { class: 'imgs' });
@@ -195,6 +196,7 @@
       h('label', { class: 'f' }, 'Название', title),
       h('label', { class: 'f' }, 'Краткое описание (для карточки)', short),
       h('label', { class: 'f' }, 'Подробное описание', desc),
+      ...frFields.map(f => h('label', {class:'f'}, f.label+' (FR)', f.input)),
       h('div', { class: 'f' }, h('b', { text: 'Фото для карточки' }), cover,
         h('button', { class: 'btn btn--ghost btn--sm', type: 'button', text: 'Загрузить фото', onclick: () => pickFiles(false, guard(async ([f]) => { if (!f) return; cur.image = (await uploadFile(f)).url; draw(); })) })),
       h('div', { class: 'f' }, h('b', { text: 'Примеры готовых работ' }), ex,
@@ -203,7 +205,7 @@
       h('div', { class: 'bar' }, h('span', { class: 'grow' }),
         h('button', { class: 'btn btn--ghost', type: 'button', text: 'Отмена', onclick: closeDlg }),
         h('button', { class: 'btn btn--primary', type: 'button', text: 'Сохранить', onclick: guard(async () => {
-          const body = { category: category.value, title: title.value, short: short.value, description: desc.value, image: cur.image, examples: cur.examples, sort: Number(sort.value) || 0, active: active.checked };
+          const body = { ...Object.fromEntries(frFields.map(f => [f.key,f.input.value])), category: category.value, title: title.value, short: short.value, description: desc.value, image: cur.image, examples: cur.examples, sort: Number(sort.value) || 0, active: active.checked };
           await api(s.id ? '/services/' + s.id : '/services', { method: s.id ? 'PUT' : 'POST', body });
           closeDlg(); toast('Сохранено'); go('services');
         }) })));
@@ -270,12 +272,14 @@
         }) })))));
   }
   function editFaq(f) {
+    const qfr = h('input', {value:f.question_fr || '', maxlength:300});
+    const afr = h('textarea', {value:f.answer_fr || '', rows:5});
     const q = h('input', { value: f.question, maxlength: 300 }); const a = h('textarea', { rows: 6, value: f.answer }); const sort = h('input', { type: 'number', value: f.sort });
-    openDlg(h('h2', { text: f.id ? 'Изменить вопрос' : 'Новый вопрос' }), h('label', { class: 'f' }, 'Вопрос', q), h('label', { class: 'f' }, 'Ответ', a),
+    openDlg(h('h2', { text: f.id ? 'Изменить вопрос' : 'Новый вопрос' }), h('label', { class: 'f' }, 'Вопрос', q), h('label', { class: 'f' }, 'Ответ', a), h('label',{class:'f'},'Вопрос (FR)',qfr), h('label',{class:'f'},'Ответ (FR)',afr),
       f.id ? h('label', { class: 'f' }, 'Порядок (меньше — выше)', sort) : null,
       h('div', { class: 'bar' }, h('span', { class: 'grow' }), h('button', { class: 'btn btn--ghost', type: 'button', text: 'Отмена', onclick: closeDlg }),
         h('button', { class: 'btn btn--primary', type: 'button', text: 'Сохранить', onclick: guard(async () => {
-          await api(f.id ? '/faq/' + f.id : '/faq', { method: f.id ? 'PUT' : 'POST', body: { question: q.value, answer: a.value, sort: Number(sort.value) || 0 } });
+          await api(f.id ? '/faq/' + f.id : '/faq', { method: f.id ? 'PUT' : 'POST', body: { question_fr:qfr.value, answer_fr:afr.value, question: q.value, answer: a.value, sort: Number(sort.value) || 0 } });
           closeDlg(); toast('Сохранено'); go('faq');
         }) })));
   }
