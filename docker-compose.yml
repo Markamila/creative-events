@@ -1,0 +1,35 @@
+# Локальный запуск: docker compose up --build
+# Перед первым запуском: cp .env.example .env и заполните значения.
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: creative
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-creative_local_pw}
+      POSTGRES_DB: creative_events
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U creative -d creative_events"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${PORT:-3000}:3000"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: 3000
+      DATABASE_URL: postgres://creative:${DB_PASSWORD:-creative_local_pw}@db:5432/creative_events
+
+volumes:
+  pgdata:

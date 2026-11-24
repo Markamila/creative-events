@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{SEO_TITLE}}</title>
+  <meta name="description" content="{{SEO_DESCRIPTION}}">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <meta name="theme-color" content="#ffd9e2">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="{{COMPANY}}">
+  <meta property="og:title" content="{{SEO_TITLE}}">
+  <meta property="og:description" content="{{SEO_DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL}}">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="application/ld+json">{{JSONLD}}</script>
+</head>
+<body>
+  <a class="skip" href="#main">К содержимому</a>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo" aria-label="На главную">
+        <img src="/img/favicon.svg" alt="" width="34" height="34">
+        <span data-company>Pastel Studio</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Основное меню">
+        <a href="#about">О нас</a>
+        <a href="#services">Мастер-классы</a>
+        <a href="#packages">Пакеты и цены</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#process">Как заказать</a>
+        <a href="#faq">Вопросы</a>
+        <a href="#contacts">Контакты</a>
+        <button type="button" class="btn btn--primary btn--sm nav__cta" data-open-form>Оформить заявку</button>
+      </nav>
+      <button type="button" class="btn btn--primary btn--sm header__cta" data-open-form>Оформить заявку</button>
+      <button type="button" class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. HERO -->
+    <section class="hero" id="top">
+      <div class="container hero__grid">
+        <div class="hero__text reveal">
+          <p class="eyebrow"><span data-company>Pastel Studio</span> · выездные мастер-классы</p>
+          <h1 data-bind="hero_title">Создаём моменты, которые хочется сохранить</h1>
+          <p class="lead" data-bind="hero_subtitle"></p>
+          <div class="hero__actions">
+            <button type="button" class="btn btn--primary btn--lg" data-open-form>Оформить заявку</button>
+            <a href="#services" class="btn btn--ghost btn--lg">Посмотреть мастер-классы</a>
+          </div>
+        </div>
+        <div class="hero__media reveal">
+          <img id="heroImage" src="/img/hero.svg" alt="Творческое мероприятие: картины, керамика и украшения" width="1400" height="1000" fetchpriority="high">
+        </div>
+      </div>
+      <div class="container">
+        <ul class="facts reveal">
+          <li><svg class="ic" viewBox="0 0 24 24"><use href="#i-car"/></svg>Выездной формат</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><use href="#i-box"/></svg>Все материалы включены</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><use href="#i-users"/></svg>Для частных и корпоративных мероприятий</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><use href="#i-heart"/></svg>Индивидуальный подход к каждому заказу</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2. О НАС -->
+    <section class="section" id="about">
+      <div class="container about">
+        <div class="about__text reveal">
+          <p class="eyebrow">О нас</p>
+          <h2 data-bind="about_title">Творчество, которое объединяет</h2>
+          <div id="aboutText" class="prose"></div>
+        </div>
+        <ul class="advantages">
+          <li class="card reveal"><span class="icon-bubble"><svg class="ic" viewBox="0 0 24 24"><use href="#i-car"/></svg></span><h3>Выезд к клиенту</h3><p>Приезжаем домой, в офис, кафе или на любую площадку.</p></li>
+          <li class="card reveal"><span class="icon-bubble"><svg class="ic" viewBox="0 0 24 24"><use href="#i-box"/></svg></span><h3>Все материалы предоставляются</h3><p>Краски, заготовки, инструменты — всё привозим сами.</p></li>
+          <li class="card reveal"><span class="icon-bubble"><svg class="ic" viewBox="0 0 24 24"><use href="#i-sparkle"/></svg></span><h3>Подходит даже для новичков</h3><p>Мастер подскажет и поможет на каждом шаге.</p></li>
+          <li class="card reveal"><span class="icon-bubble"><svg class="ic" viewBox="0 0 24 24"><use href="#i-palette"/></svg></span><h3>Индивидуальное оформление</h3><p>Подбираем цвета, декор и тему под ваше событие.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. УСЛУГИ -->
+    <section class="section section--tint" id="services">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Каталог</p>
+          <h2>Мастер-классы на любой вкус</h2>
+          <p class="muted">Выберите направление — один или несколько мастер-классов можно сочетать в одном мероприятии.</p>
+        </header>
+        <div class="chips" id="serviceFilters" role="tablist" aria-label="Категории"></div>
+        <div class="grid grid--services" id="serviceGrid"></div>
+      </div>
+    </section>
+
+    <!-- 4. ПАКЕТЫ -->
+    <section class="section" id="packages">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Пакеты</p>
+          <h2>Выберите свой формат мероприятия</h2>
+        </header>
+        <div class="grid grid--packages" id="packageGrid"></div>
+        <p class="note reveal" id="priceNote"></p>
+      </div>
+    </section>
+
+    <!-- 5. ГАЛЕРЕЯ -->
+    <section class="section section--tint" id="gallery">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Галерея</p>
+          <h2>Вдохновение в каждой детали</h2>
+          <p class="muted">Картины, шопперы, керамика, украшения и атмосфера наших мероприятий.</p>
+        </header>
+        <div class="masonry" id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <!-- 6. ПРОЦЕСС -->
+    <section class="section" id="process">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Как это работает</p>
+          <h2>От заявки до вашего творческого события</h2>
+        </header>
+        <ol class="steps">
+          <li class="card reveal"><span class="steps__num">1</span><h3>Оставляете заявку</h3><p>Выбираете мастер-класс, пакет, количество участников, дату и пожелания.</p></li>
+          <li class="card reveal"><span class="steps__num">2</span><h3>Обсуждаем детали</h3><p>Наш менеджер связывается с вами, уточняет информацию и подготавливает коммерческое предложение.</p></li>
+          <li class="card reveal"><span class="steps__num">3</span><h3>Утверждаем мероприятие</h3><p>Согласовываем стоимость, оформление, сценарий и получаем предоплату.</p></li>
+          <li class="card reveal"><span class="steps__num">4</span><h3>Проводим мероприятие</h3><p>Приезжаем с материалами и организуем творческое событие.</p></li>
+        </ol>
+        <div class="center reveal"><button type="button" class="btn btn--primary btn--lg" data-open-form>Оформить заявку</button></div>
+      </div>
+    </section>
+
+    <!-- 8. КОНТАКТЫ -->
+    <section class="section section--tint" id="contacts">
+      <div class="container">
+        <div class="contacts reveal">
+          <div>
+            <p class="eyebrow">Контакты</p>
+            <h2>Давайте создавать красоту вместе</h2>
+            <ul class="contact-list" id="contactList"></ul>
+          </div>
+          <div class="social" id="socialBtns"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. FAQ -->
+    <section class="section" id="faq">
+      <div class="container container--narrow">
+        <header class="section__head reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Часто задаваемые вопросы</h2>
+        </header>
+        <div class="faq" id="faqList"></div>
+      </div>
+    </section>
+
+    <!-- 10. ФИНАЛЬНЫЙ CTA -->
+    <section class="section section--cta">
+      <div class="container">
+        <div class="cta reveal">
+          <h2 data-bind="cta_title">Ваше следующее мероприятие может стать особенным</h2>
+          <p data-bind="cta_subtitle"></p>
+          <button type="button" class="btn btn--white btn--lg" data-open-form>Оформить заявку</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <strong class="footer__brand" data-company>Pastel Studio</strong>
+        <p class="muted" id="footerCity"></p>
+      </div>
+      <div class="footer__links">
+        <button type="button" class="link" id="openPrivacy">Политика обработки персональных данных</button>
+        <span class="muted" id="footerYear"></span>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="fab" data-open-form aria-label="Оформить заявку">Оформить заявку</button>
+
+  <!-- Карточка услуги -->
+  <dialog class="modal" id="serviceDialog" aria-labelledby="svcTitle">
+    <div class="modal__box">
+      <button type="button" class="modal__close" data-close aria-label="Закрыть"><svg class="ic" viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+      <div id="serviceBody"></div>
+    </div>
+  </dialog>
+
+  <!-- Просмотр фото -->
+  <dialog class="lightbox" id="lightbox" aria-label="Просмотр фотографии">
+    <button type="button" class="lightbox__close" data-close aria-label="Закрыть"><svg class="ic" viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+    <button type="button" class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Предыдущее"><svg class="ic" viewBox="0 0 24 24"><use href="#i-left"/></svg></button>
+    <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+    <button type="button" class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Следующее"><svg class="ic" viewBox="0 0 24 24"><use href="#i-right"/></svg></button>
+  </dialog>
+
+  <!-- Анкета -->
+  <dialog class="modal modal--form" id="formDialog" aria-labelledby="formTitle">
+    <div class="modal__box">
+      <button type="button" class="modal__close" data-close aria-label="Закрыть"><svg class="ic" viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+      <form id="wizard" novalidate autocomplete="on">
+        <div class="wizard__head">
+          <h2 id="formTitle">Заявка на мероприятие</h2>
+          <p class="muted" id="stepLabel"></p>
+          <div class="progress" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
+        </div>
+
+        <fieldset class="step" data-step="1">
+          <legend>Контактная информация</legend>
+          <label class="field"><span>Ваше имя *</span><input name="name" type="text" maxlength="80" autocomplete="name" required><em class="err" data-err="name"></em></label>
+          <label class="field"><span>Номер телефона *</span><input name="phone" type="tel" inputmode="tel" maxlength="30" autocomplete="tel" placeholder="+7 700 000 00 00" required><em class="err" data-err="phone"></em></label>
+          <div class="field"><span>Как удобнее связаться? *</span>
+            <div class="choice-row">
+              <label class="choice"><input type="radio" name="contact_method" value="whatsapp"><span>WhatsApp</span></label>
+              <label class="choice"><input type="radio" name="contact_method" value="telegram"><span>Telegram</span></label>
+              <label class="choice"><input type="radio" name="contact_method" value="call"><span>Звонок</span></label>
+            </div><em class="err" data-err="contact_method"></em>
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="2" hidden>
+          <legend>Информация о мероприятии</legend>
+          <div class="field-row">
+            <label class="field"><span>Желаемая дата *</span><input name="event_date" type="date" required><em class="err" data-err="event_date"></em></label>
+            <label class="field"><span>Предпочтительное время</span><input name="event_time" type="time"><em class="err" data-err="event_time"></em></label>
+          </div>
+          <div class="field"><span>Количество участников *</span>
+            <div class="stepper">
+              <button type="button" data-step-dec aria-label="Меньше">−</button>
+              <input name="participants" type="number" inputmode="numeric" min="1" max="500" value="6" required>
+              <button type="button" data-step-inc aria-label="Больше">+</button>
+            </div><em class="err" data-err="participants"></em>
+          </div>
+          <div class="field"><span>Формат мероприятия *</span>
+            <div class="choice-row" id="eventTypes"></div><em class="err" data-err="event_type"></em>
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="3" hidden>
+          <legend>Выбор услуг</legend>
+          <p class="muted">Можно выбрать несколько. Не уверены — пропустите, менеджер поможет определиться.</p>
+          <div id="serviceChoices"></div>
+        </fieldset>
+
+        <fieldset class="step" data-step="4" hidden>
+          <legend>Выбор пакета</legend>
+          <div class="pkg-choices" id="packageChoices"></div><em class="err" data-err="package"></em>
+        </fieldset>
+
+        <fieldset class="step" data-step="5" hidden>
+          <legend>Дополнительные пожелания</legend>
+          <label class="field"><span>Расскажите, что для вас важно</span>
+            <textarea name="wishes" rows="6" maxlength="2000" placeholder="Цветовая гамма, желаемый декор, тематика, особые пожелания, вопросы…"></textarea>
+          </label>
+        </fieldset>
+
+        <fieldset class="step" data-step="6" hidden>
+          <legend>Проверьте и отправьте</legend>
+          <dl class="summary" id="summary"></dl>
+          <div class="hp" aria-hidden="true"><label>Сайт<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <label class="consent"><input type="checkbox" name="consent"><span>Я согласен(-на) на обработку персональных данных в соответствии с <button type="button" class="link" id="consentPolicy">политикой</button> *</span></label>
+          <em class="err" data-err="consent"></em>
+          <p class="err err--form" id="formError" role="alert"></p>
+        </fieldset>
+
+        <div class="wizard__nav">
+          <button type="button" class="btn btn--ghost" id="btnBack">Назад</button>
+          <button type="button" class="btn btn--primary" id="btnNext">Далее</button>
+          <button type="submit" class="btn btn--primary" id="btnSubmit" hidden>Отправить заявку</button>
+        </div>
+      </form>
+
+      <div class="success" id="formSuccess" hidden>
+        <span class="success__icon"><svg class="ic" viewBox="0 0 24 24"><use href="#i-check"/></svg></span>
+        <h2>Заявка отправлена</h2>
+        <p>Спасибо за вашу заявку! Мы получили информацию и скоро свяжемся с вами, чтобы обсудить детали и подготовить индивидуальное предложение.</p>
+        <button type="button" class="btn btn--primary" data-close>Закрыть</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Политика -->
+  <dialog class="modal" id="privacyDialog" aria-labelledby="privacyTitle">
+    <div class="modal__box prose">
+      <button type="button" class="modal__close" data-close aria-label="Закрыть"><svg class="ic" viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+      <h2 id="privacyTitle">Обработка персональных данных</h2>
+      <p>Оставляя заявку, вы передаёте <span data-company>компании</span> своё имя, номер телефона, способ связи и сведения о планируемом мероприятии.</p>
+      <p>Эти данные используются только для связи с вами, подготовки коммерческого предложения и организации мероприятия. Мы не публикуем их и не передаём третьим лицам, кроме случаев, предусмотренных законом.</p>
+      <p>Данные хранятся в защищённой базе, доступ к ним имеют только сотрудники компании. Вы можете в любой момент попросить удалить или изменить ваши данные, написав нам по контактам, указанным на сайте.</p>
+    </div>
+  </dialog>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-car" viewBox="0 0 24 24"><path d="M5 16V11l1.6-4.4A2 2 0 0 1 8.5 5h7a2 2 0 0 1 1.9 1.6L19 11v5M3 16h18v2.5a1 1 0 0 1-1 1h-1.5a1 1 0 0 1-1-1V18h-9v.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V16Zm4-3h.01M17 13h.01" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-box" viewBox="0 0 24 24"><path d="m3.5 7.5 8.5-4 8.5 4v9l-8.5 4-8.5-4v-9ZM3.5 7.5 12 11.5l8.5-4M12 11.5v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19M10 11a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4ZM20 19v-1.5a3.5 3.5 0 0 0-2.5-3.35M14.5 4.8a3.2 3.2 0 0 1 0 6.1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.4 4.4 0 0 1 12 7.2 4.4 4.4 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3.5 13.8 9l5.7 1.8-5.7 1.8L12 18l-1.8-5.4L4.5 10.8 10.2 9 12 3.5ZM19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7.7-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.4 0 2-1 1.6-2-.5-1.2.2-2.5 1.6-2.5H17a3.5 3.5 0 0 0 3.5-3.5C20.5 7 16.7 3.5 12 3.5ZM7.5 11h.01M10 7.5h.01M14.5 7.5h.01" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-left" viewBox="0 0 24 24"><path d="m14.5 5.5-6.5 6.5 6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-right" viewBox="0 0 24 24"><path d="m9.5 5.5 6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4.5h3.2l1.6 4-2 1.3a11 11 0 0 0 5.4 5.4l1.3-2 4 1.6V18a1.5 1.5 0 0 1-1.6 1.5C10.8 19 5 13.2 4.5 6.1A1.5 1.5 0 0 1 5 4.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6.5-5.6 6.5-11A6.5 6.5 0 0 0 5.5 10c0 5.4 6.5 11 6.5 11Zm0-8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 7v5l3 2M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 6.5h16v11H4v-11Zm0 .5 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="7" r="1" fill="currentColor"/></symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M4 20l1.2-4.2A8 8 0 1 1 8.3 19L4 20Zm5.2-11.2c-.3.6-.5 1.5.6 3 1.4 1.9 2.9 2.7 4.2 3 .8.2 1.5-.4 1.8-1l-1.6-.9-.9.7c-.8-.3-2-1.2-2.4-2.2l.7-.9-.8-1.6c-.4.1-1 .4-1.6.9Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M20.5 4.5 3.5 11l5 1.8 1.9 5.7 2.7-3.3 4.1 3L20.5 4.5ZM8.5 12.8l9-6.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    </defs>
+  </svg>
+
+  <noscript><p style="text-align:center;padding:1rem">Для работы сайта включите JavaScript.</p></noscript>
+  <script src="/js/app.js" defer></script>
+</body>
+</html>

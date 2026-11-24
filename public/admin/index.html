@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Админ-панель</title>
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <div id="login" class="login" hidden>
+    <form id="loginForm" class="login__box" autocomplete="on">
+      <img src="/img/favicon.svg" alt="" width="52" height="52">
+      <h1>Вход для сотрудников</h1>
+      <label>Логин<input name="username" autocomplete="username" required></label>
+      <label>Пароль<input name="password" type="password" autocomplete="current-password" required></label>
+      <p class="err" id="loginErr" role="alert"></p>
+      <button class="btn btn--primary" type="submit">Войти</button>
+    </form>
+  </div>
+
+  <div id="app" hidden>
+    <header class="top">
+      <strong class="top__brand">Админ-панель</strong>
+      <nav class="tabs" id="tabs"></nav>
+      <div class="top__right">
+        <a href="/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">Открыть сайт</a>
+        <button class="btn btn--ghost btn--sm" id="logout" type="button">Выйти</button>
+      </div>
+    </header>
+    <main id="view" class="view"></main>
+  </div>
+
+  <dialog id="dlg" class="dlg"><div class="dlg__box" id="dlgBox"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>
